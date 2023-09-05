@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+
+</nav>
+
+    <div class="row">
+    <div class="container-fluid" style="padding-top: 0%;background-color: lightblue;">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <i class='fas fa-user-graduate' style='font-size:50px;color: black;'></i>
+        </div>
+        <li ><a href="{% url 'View_student' %}">View All</a></li>
+        <li ><a href="{% url 'insert_student' %}">Insert</a></li>
+
+      </ul>
+    </div>
+
+    <div class="row" style="padding-top: 10px;">
+
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10" style="background-color: lightgrey">
+
+        <form method="post" action="{% url 'edit_student' %}">
+          {% csrf_token %}
+                 {% if messages %}
+           {% for message in messages %}
+             {% if message.tags == 'error' %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'success' %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'warning' %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+
+          <div class = "form-group">
+              <input type="text" class="form-control" name="student_id" value="{% for i in student %}{{i.admin.id}}{% endfor %}" type ="hidden">
+          </div>
+
+          <label for="validationTooltip01">First name</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="first_name" value="{% for i in student %}{{i.admin.first_name}} {% endfor %}">
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Last name</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="last_name" value="{% for i in student %}{{i.admin.last_name}} {% endfor %}">
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Address</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="address" value="{% for i in student %}{{i.address}} {% endfor %}">
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Email</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="email" value="{% for i in student %}{{i.admin.email}} {% endfor %}">
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Username</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="username" value="{% for i in student %}{{i.admin.username}} {% endfor %}">
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Password</label>
+          <input type="password" style="background-color: lightyellow;width: 95%;" class="form-control" name="password" placeholder="Fill only if you want to change" >
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Gender</label>
+          <select type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="gender" value="{% for i in student %}{{i.admin.gender}} {% endfor %}">
+            <option>Select Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Course</label>
+          <select type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="course_id" value="{% for i in student %}{{i.course_id}} {% endfor %}">
+            <option>Select Course</option>
+            {% for i in course %}
+            <option value="{{i.id}}">{{i.name}}</option>
+             {% endfor %}
+          </select>
+
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Session-year</label>
+          <select type="text" style="background-color: lightyellow;width: 95%;" class="form-control"name="session_year_id" value="{% for i in student %}{{i.session_year_id}} {% endfor %}">
+            <option>Select Session Year</option>
+            {% for i in session_year %}
+            <option value="{{i.id}}">{{i.session_start}} to {{i.session_end}}</option>
+            {% endfor %}
+
+          </select>
+
+
+          <div style="padding-bottom: 10px;"></div>
+
+          <button class="btn btn-primary" style="padding-top: 10px;" type="update" onclick="insert_record()">Update</button>
+        </form>
+      </div>
+    </div>
+
+  <div class="footer" style="position: ;left: 0;bottom: 0;width:100%;background-color: grey;color: white;text-align: center;">
+    <p>All Rights Reserved</p>
+
+{% endblock %}

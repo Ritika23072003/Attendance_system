@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+
+</nav>
+
+    <div class="row">
+    <div class="container-fluid" style="padding-top: 0%;background-color: lightblue;">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <i class='fas fa-user-graduate' style='font-size:50px;color: black;'></i>
+        </div>
+        <li ><a href="{% url 'view_staff' %}">View Staff</a></li>
+        <li class="active" style="background-color: lightgrey;"><a href="{% url 'add_staff' %}">Add Staff</a></li>
+
+      </ul>
+    </div>
+
+    <div class="row" style="padding-top: 10px;">
+
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10" style="background-color: lightgrey">
+
+        <form method="post" action="{% url 'add_staff' %}">
+          {% csrf_token %}
+
+          {% if messages %}
+           {% for message in messages %}
+             {% if message.tags == 'error' %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'success' %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'warning' %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          <label for="validationTooltip01">First name</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="first_name" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Last name</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="last_name" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Address</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="address" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Email</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="email" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Username</label>
+          <input type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="username" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Password</label>
+          <input type="password" style="background-color: lightyellow;width: 95%;" class="form-control" name="password" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Gender</label>
+          <select type="text" style="background-color: lightyellow;width: 95%;" class="form-control" name="gender" required>
+            <option>Select Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+
+          </select>
+
+
+
+          <div style="padding-bottom: 10px;"></div>
+
+          <button class="btn btn-primary" style="padding-top: 10px;" type="submit" onclick="insert_record()">Submit</button>
+        </form>
+      </div>
+    </div>
+
+
+<div class="footer" style="position: fixed;left: 0;bottom: 0;width:100%;background-color: grey;color: white;text-align: center;">
+    <p>All Rights Reserved</p>
+
+
+
+{% endblock %}

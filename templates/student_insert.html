@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+</nav>
+
+    <div class="row">
+    <div class="container-fluid" style="padding-top: 0%;background-color: lightblue;">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <i class='fas fa-user-graduate' style='font-size:50px;color: black;'></i>
+        </div>
+        <li ><a href="{% url 'View_student' %}">View All</a></li>
+        <li class="active" style="background-color: lightgrey;"><a href="student_insert">Insert</a></li>
+      </ul>
+    </div>
+
+    <div class="row" style="padding-top: 10px;">
+
+      <div class="col-sm-1"></div>
+      <div class="col-sm-4" style="background-color: lightgrey">
+
+        <form>
+
+          {% csrf_token %}
+          <label for="validationTooltip01">First name</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="firstName" placeholder="First name" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Last name</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="lastName" placeholder="Last name" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Address</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="address" placeholder="Address" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Email</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="email" placeholder="Email" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Mobile No</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="mobileNo" placeholder="Mobile Number" required>
+
+          <label for="validationTooltip01" style="padding-top: 5px;">Department</label>
+          <input type="text" style="background-color: lightyellow;width: 85%;" class="form-control" id="department" placeholder="Department" required>
+
+          <div style="padding-bottom: 10px;"></div>
+
+          <button class="btn btn-primary" style="padding-top: 10px;" type="button" onclick="insert_record()">Submit</button>
+        </form>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-4" style="background-color: lightgrey;">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Output</label>
+          <textarea id="output" class="form-control rounded-0" id="exampleFormControlTextarea1" style="height: 387px;font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: 200;" readonly></textarea>
+        </div>
+      </div>
+
+      <div class="col-sm-1"></div>
+    </div>
+
+
+
+
+
+{% endblock %}

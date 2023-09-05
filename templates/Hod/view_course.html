@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+
+</nav>
+
+    <div class="row">
+    <div class="container-fluid" style="padding-top: 0%;background-color: lightblue;">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <i class='fas fa-user-graduate' style='font-size:50px;color: black;'></i>
+        </div>
+        <li class="active" style="background-color: lightgrey;"><a href="{% url 'view_course' %}">View Course</a></li>
+        <li ><a href="{% url 'add_course' %}">Add Course</a></li>
+
+        </ul>
+    </div>
+
+          {% if messages %}
+           {% for message in messages %}
+             {% if message.tags == 'error' %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'success' %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;&times;</span>
+                </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+           {% for message in messages %}
+            {% if message.tags == 'warning' %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>{{ message }}</strong>
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+            {% endif %}
+           {% endfor %}
+          {% endif %}
+
+
+    <div class="row" style="padding-top: 5px;">
+
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10" style="background-color: lightgrey;height: 390px;">
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Updated At</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+          <tbody>
+
+            {% for i in course %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.created_at}}</td>
+                <td>{{i.update_at}}</td>
+                <td class="text-right">
+                        <div class="actions">
+                            <a href="{% url 'edit_course' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                            <i class="fas fa-pen"></i>
+                            </a>
+                            <a href="{% url 'delete_course' i.id %}" class="btn btn-sm bg-danger-light">
+                             <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                 </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+
+ <div class="footer" style="position: fixed;left: 0;bottom: 0;width:100%;background-color: grey;color: white;text-align: center;">
+    <p>All Rights Reserved</p>
+
+{% endblock %}
